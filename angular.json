@@ -33,7 +33,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+             "src/assets/js/jquery-min.js",
+            "src/assets/js/popper.min.js",
+            "src/assets/js/bootstrap.min.js",
+
+  "src/assets/js/jquery.slicknav.js",
+  "src/assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -54,7 +61,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1.5mb"
                 },
                 {
                   "type": "anyComponentStyle",

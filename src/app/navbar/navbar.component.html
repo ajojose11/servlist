@@ -1,0 +1,142 @@
+ <!-- Navbar Start -->
+ <nav [hidden]="currentRoute=='/login'"class="navbar navbar-expand-lg fixed-top scrolling-navbar">
+    <div class="container">
+      <div class="theme-header clearfix">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <span class="lni-menu"></span>
+            <span class="lni-menu"></span>
+            <span class="lni-menu"></span>
+          </button>
+          <a [routerLink]="'/home'"  class="navbar-brand"><p style="margin: 5px;
+            font-size: 32px;">ServList</p></a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-left">
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="index.html">
+                Home
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="category.html">
+                Categories
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Listings <i class="lni-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a></li>
+                <li><a class="dropdown-item" href="adlistinglist.html">Ad Listing</a></li>
+                <li><a class="dropdown-item" href="ads-details.html">Listing Detail</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Pages <i class="lni-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                <li><a class="dropdown-item" href="services.html">Services</a></li>
+                <li><a class="dropdown-item" href="ads-details.html">Ads Details</a></li>
+                <li><a class="dropdown-item" href="post-ads.html">Ads Post</a></li>
+                <li><a class="dropdown-item" href="pricing.html">Packages</a></li>
+                <li><a class="dropdown-item" href="testimonial.html">Testimonial</a></li>
+                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+                <li><a class="dropdown-item" href="404.html">404</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog <i class="lni-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a></li>
+                <li><a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
+                <li><a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a></li>
+                <li><a class="dropdown-item" href="single-post.html">Blog Details</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">
+                Contact
+              </a>
+            </li>
+          </ul>
+          <div *ngIf="!signedIn" class="header-top-right float-right">
+            <a [routerLink]="'/login'" class="header-top-button"><i class="lni-lock"></i> Log In| Register</a> 
+            <!-- <a href="register.html" class="header-top-button"><i class="lni-pencil"></i> Register</a> -->
+          </div>
+          <div *ngIf="signedIn" class="header-top-right float-right">
+            <a  [routerLink]="'/home'" (click)="signOut()"class="header-top-button"><i class="lni-lock"></i> Log Out</a> 
+          </div>
+          <div class="post-btn">
+            <a class="btn btn-common" [routerLink]="'/post'"><i class="lni-pencil-alt"></i> Post an Ad</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
+  </nav>
+  <!-- Navbar End -->
+
+        <!-- Hero Area Start -->
+        <!-- <div *ngIf="currentRoute=='/home'"id="hero-area">
+            <div class="overlay"></div>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+                  <div class="contents">
+                    <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
+                    <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+                    <div class="search-bar">
+                      <div class="search-inner">
+                        <form class="search-form">
+                          <div class="form-group">
+                            <input type="text" name="customword" class="form-control" placeholder="What are you looking for?">
+                          </div>
+                          <div class="form-group inputwithicon">
+                            <div class="select">
+                              <select>
+                                <option value="none">Locations</option>
+                                <option value="none">New York</option>
+                                <option value="none">California</option>
+                                <option value="none">Washington</option>
+                                <option value="none">Birmingham</option>
+                                <option value="none">Chicago</option>
+                                <option value="none">Phoenix</option>
+                              </select>
+                            </div>
+                            <i class="lni-target"></i>
+                          </div>
+                          <div class="form-group inputwithicon">
+                            <div class="select">
+                              <select>
+                                <option value="none">Select Catagory</option>
+                                <option value="none">Jobs</option>
+                                <option value="none">Electronics</option>
+                                <option value="none">Mobile</option>
+                                <option value="none">Training</option>
+                                <option value="none">Pets</option>
+                                <option value="none">Real Estate</option>
+                                <option value="none">Services</option>
+                                <option value="none">Training</option>
+                                <option value="none">Vehicles</option>
+                              </select>
+                            </div>
+                            <i class="lni-menu"></i>
+                          </div>
+                          <button class="btn btn-common" type="button"><i class="lni-search"></i> Search Now</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- Hero Area End -->

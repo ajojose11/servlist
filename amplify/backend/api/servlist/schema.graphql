@@ -1,0 +1,47 @@
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: owner}
+       { allow: private, operations: [read] }
+      { allow: public,   operations: [read] }
+    ]
+  ) {
+  id: ID!
+  name: String
+  email: String
+  address: String
+  ads: [Advertisements] @connection(keyName: "byUser", fields: ["id"])
+}
+type Category 
+@model 
+@auth(rules: [
+  { allow: owner} 
+  { allow: private, operations: [read] }
+  { allow: public, operations: [read] }]) 
+  {
+  id: ID!
+  name: String
+  ads: [Advertisements] @connection(keyName: "byCategory", fields: ["id"])
+}
+
+type Advertisements 
+  @model 
+  @auth(
+    rules: [
+      { allow: owner}
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  )
+  @key(name: "byUser", fields: ["userID"])
+  @key(name: "byCategory", fields: ["categoryID"])
+  {
+    id: ID!
+    title: String
+    description: String
+    categoryID: ID
+    userID: ID
+    place: String
+    createdTime: AWSDateTime!
+  }

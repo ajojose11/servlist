@@ -1,0 +1,126 @@
+# this is an auto generated file. This will be overwritten
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    name
+    email
+    address
+    createdAt
+    updatedAt
+    owner
+    ads {
+      items {
+        id
+        title
+        description
+        categoryID
+        userID
+        place
+        createdTime
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      email
+      address
+      createdAt
+      updatedAt
+      owner
+      ads {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetCategory($id: ID!) {
+  getCategory(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+    owner
+    ads {
+      items {
+        id
+        title
+        description
+        categoryID
+        userID
+        place
+        createdTime
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+}
+query ListCategorys(
+  $filter: ModelCategoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+      ads {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetAdvertisements($id: ID!) {
+  getAdvertisements(id: $id) {
+    id
+    title
+    description
+    categoryID
+    userID
+    place
+    createdTime
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAdvertisementss(
+  $filter: ModelAdvertisementsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAdvertisementss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      categoryID
+      userID
+      place
+      createdTime
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
