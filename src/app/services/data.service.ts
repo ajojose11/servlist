@@ -10,9 +10,11 @@ export class DataService {
   category: any;
   users: any;
   ads: any;
-  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhc2tAdW5pdmVyc2FsLXR1dG9yaWFsLmNvbSIsImFwaV90b2tlbiI6IlQ2VlBOUmZXbkxFbmdsMHd2djctZ1d2Y09KRHFPSkptc3ZoNkNOdGo5a3p1Z1RSYkhvdXVET1NXeTdzYmJzdG5taDAifSwiZXhwIjoxNjE5MTEyNzE5fQ.88GSm2Pt2BV4wO4rDbiMJtNEdRkhcXvvc7cPP7Q8PhM';
-  url = 'https://www.universal-tutorial.com/api'
-  header = { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.token})}
+  token = 'B4UnQqbb7wGDWXtZ0wHoGBf1iNX7sN0uAAF5oAk7ayCKUe1Mj457oUSybIeakjlv5tg';
+  accessToken:any;
+  header: any;
+  url = 'https://www.universal-tutorial.com/api';
+  header1 = { headers: new HttpHeaders({'api-token': this.token, 'user-email': 'ajojose11@gmail.com'})}
   dataSubject: BehaviorSubject<any>;
   dataSubscription: Observable<any>;
   constructor(private api: APIService, private http: HttpClient) { 
@@ -37,7 +39,7 @@ export class DataService {
     })
     
   }
-
+  
   public getCountries() {
     let url = this.url + '/countries'
     return this.http.get(url,this.header)
@@ -49,6 +51,10 @@ export class DataService {
   public getCity(state:string) {
     let url = this.url + '/cities/' + state
     return this.http.get(url,this.header)
+  }
+  public getAccessToken() {
+    let url = this.url + '/getaccesstoken'
+    return this.http.get(url,this.header1)
   }
 
 }

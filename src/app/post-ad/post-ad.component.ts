@@ -3,6 +3,7 @@ import { APIService, CreateAdvertisementsInput} from '../services/API.service';
 import {UserService } from '../services/user.service'
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -37,7 +38,11 @@ export class PostAdComponent implements OnInit, OnDestroy{
     this.api.ListCategoryID().then(res => {
       this.category = res.items;
     })
-    this.getCountry();
+    this.data.getAccessToken().subscribe((res:any)=> {
+      this.data.header = { headers: new HttpHeaders({'Authorization': 'Bearer ' + res.auth_token})}
+      this.getCountry();
+    })
+    
   }
   getCountry() {
     this.data.getCountries().subscribe(res=> {
