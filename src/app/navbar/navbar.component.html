@@ -15,57 +15,16 @@
         </div>
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="navbar-nav mr-auto w-100 justify-content-left">
-            <!-- <li class="nav-item active">
-              <a class="nav-link" href="index.html">
+            <li class="nav-item ">
+              <a class="nav-link" [routerLink]="'/home'">
                 Home
               </a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="category.html">
-                Categories
-              </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Listings <i class="lni-chevron-down"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a></li>
-                <li><a class="dropdown-item" href="adlistinglist.html">Ad Listing</a></li>
-                <li><a class="dropdown-item" href="ads-details.html">Listing Detail</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Pages <i class="lni-chevron-down"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="about.html">About Us</a></li>
-                <li><a class="dropdown-item" href="services.html">Services</a></li>
-                <li><a class="dropdown-item" href="ads-details.html">Ads Details</a></li>
-                <li><a class="dropdown-item" href="post-ads.html">Ads Post</a></li>
-                <li><a class="dropdown-item" href="pricing.html">Packages</a></li>
-                <li><a class="dropdown-item" href="testimonial.html">Testimonial</a></li>
-                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                <li><a class="dropdown-item" href="404.html">404</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Blog <i class="lni-chevron-down"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a></li>
-                <li><a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
-                <li><a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a></li>
-                <li><a class="dropdown-item" href="single-post.html">Blog Details</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">
-                Contact
-              </a>
-            </li>
+            
+           
+           
+          
+          
           </ul>
           <div *ngIf="!signedIn" class="header-top-right float-right">
             <a [routerLink]="'/login'" class="header-top-button"><i class="lni-lock"></i> Log In| Register</a> 

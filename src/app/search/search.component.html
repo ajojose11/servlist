@@ -1,0 +1,69 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+      <div class="row">         
+        <div class="col-md-12">
+          <div class="breadcrumb-wrapper">
+            <h2 class="product-title">Search Results</h2>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Featured Section Start -->
+        <section class="featured section-padding" *ngIf="!noResults">
+            <div class="container">
+              <div class="row">
+            
+                <div *ngFor="let item of ads" class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                  <div class="featured-box">
+                    <!-- <figure>
+                      <div class="homes-tag featured">Cameras</div>
+                      <div class="homes-tag rent"><i class="lni-heart"></i> 202</div>
+                      <span class="price-save">
+                        $200
+                      </span>
+                      <a href="#"><img class="img-fluid" src="assets/img/featured/img-1.jpg" alt=""></a>
+                    </figure> -->
+                    <div  class="content-wrapper">
+                      <div class="feature-content">
+                        <h4><a >{{item.title}}</a></h4>
+                        <p class="listing-tagline">{{item.description}}</p>
+                        <div class="meta-tag">
+                          <!-- <div class="listing-review">
+                            <span class="review-avg">4.5</span>
+                            2 Ratings       
+                          </div> -->
+                          <div class="user-name">
+                            <a ><i class="lni-user"></i>{{item.user.items[0].name}}</a>
+                          </div>
+                          <div class="listing-category">
+                            <a ><i class="lni-display"></i>{{item.category.items[0].name}} </a>         
+                          </div>
+                        </div>
+                      </div>
+                      <div class="listing-bottom clearfix">
+                        <a class="float-left"><i class="lni-map-marker"></i> {{item.city}}, {{item.state}}</a>
+                        <a [routerLink]="['/ads', item.id]" class="float-right" >View Details</a> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+          </section>
+
+          <div *ngIf="noResults">
+            <div class="container">
+                <div class="row">         
+                  <div class="col-md-12">
+                    <div class="breadcrumb-wrapper">
+                      <h2 class="product-title">No Results found for your query</h2>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>

@@ -88,11 +88,11 @@ JS INDEX
   /*====================================
   wow js
   ======================================*/
-  var wow = new WOW({
-      //disabled for mobile
-      mobile: false
-  });
-  wow.init();
+  // var wow = new WOW({
+  //     //disabled for mobile
+  //     mobile: false
+  // });
+  // wow.init();
 
   /*====================================
   Tooltip Toggle
@@ -102,114 +102,114 @@ JS INDEX
   /*====================================
   Testimonials Carousel 
   ======================================*/
-  var testiOwl = $("#testimonials");
-  testiOwl.owlCarousel({
-      autoplay:true,
-      margin:30,
-      dots:false,
-      autoplayHoverPause:true,
-      nav:false,
-      loop:true,
-      responsiveClass:true,
-      responsive:{
-          0: {
-              items:1,
-          },
-          991:{
-              items:2
-        }
-      }
-  });
+  // var testiOwl = $("#testimonials");
+  // testiOwl.owlCarousel({
+  //     autoplay:true,
+  //     margin:30,
+  //     dots:false,
+  //     autoplayHoverPause:true,
+  //     nav:false,
+  //     loop:true,
+  //     responsiveClass:true,
+  //     responsive:{
+  //         0: {
+  //             items:1,
+  //         },
+  //         991:{
+  //             items:2
+  //       }
+  //     }
+  // });
 
-  /*====================================
-  New Products Owl Carousel
-  ======================================*/
-  var newproducts = $("#new-products");
-    newproducts.owlCarousel({
-      autoplay: true,
-      nav: true,
-      autoplayHoverPause:true,
-      smartSpeed: 350,
-      dots: false,
-      margin:30,
-      loop: true,
-      navText: [
-        '<i class="lni-chevron-left"></i>',
-        '<i class="lni-chevron-right"></i>'
-      ],
-      responsiveClass: true,
-      responsive: {
-          0: {
-              items: 1,
-          },
-          575: {
-              items: 2,
-          },
-          991: {
-              items: 3,
-          }
-        }
-    });
+  // /*====================================
+  // New Products Owl Carousel
+  // ======================================*/
+  // var newproducts = $("#new-products");
+  //   newproducts.owlCarousel({
+  //     autoplay: true,
+  //     nav: true,
+  //     autoplayHoverPause:true,
+  //     smartSpeed: 350,
+  //     dots: false,
+  //     margin:30,
+  //     loop: true,
+  //     navText: [
+  //       '<i class="lni-chevron-left"></i>',
+  //       '<i class="lni-chevron-right"></i>'
+  //     ],
+  //     responsiveClass: true,
+  //     responsive: {
+  //         0: {
+  //             items: 1,
+  //         },
+  //         575: {
+  //             items: 2,
+  //         },
+  //         991: {
+  //             items: 3,
+  //         }
+  //       }
+  //   });
 
-  /*====================================
-  Categories Iocn Owl Carousel
-  ======================================*/
-  var categoriesslider = $("#categories-icon-slider");
-  categoriesslider.owlCarousel({
-    autoplay: true,
-    nav: false,
-    autoplayHoverPause:true,
-    smartSpeed: 350,
-    dots: true,
-    margin:30,
-    loop: true,
-    navText: [
-      '<i class="lni-chevron-left"></i>',
-      '<i class="lni-chevron-right"></i>'
-    ],
-    responsiveClass: true,
-    responsive: {
-        0: {
-            items: 1,
-        },
-        575: {
-            items: 2,
-        },
-        991: {
-            items: 5,
-        }
-      }
-  });
+  // /*====================================
+  // Categories Iocn Owl Carousel
+  // ======================================*/
+  // var categoriesslider = $("#categories-icon-slider");
+  // categoriesslider.owlCarousel({
+  //   autoplay: true,
+  //   nav: false,
+  //   autoplayHoverPause:true,
+  //   smartSpeed: 350,
+  //   dots: true,
+  //   margin:30,
+  //   loop: true,
+  //   navText: [
+  //     '<i class="lni-chevron-left"></i>',
+  //     '<i class="lni-chevron-right"></i>'
+  //   ],
+  //   responsiveClass: true,
+  //   responsive: {
+  //       0: {
+  //           items: 1,
+  //       },
+  //       575: {
+  //           items: 2,
+  //       },
+  //       991: {
+  //           items: 5,
+  //       }
+  //     }
+  // });
 
-  /*====================================
-  Details  Owl Carousel
-  ======================================*/
-  var detailsslider = $("#owl-demo");
-  detailsslider.owlCarousel({
-    autoplay: true,
-    nav: false,
-    autoplayHoverPause:true,
-    smartSpeed: 350,
-    dots: true,
-    margin:30,
-    loop: true,
-    navText: [
-      '<i class="lni-chevron-left"></i>',
-      '<i class="lni-chevron-right"></i>'
-    ],
-    responsiveClass: true,
-    responsive: {
-        0: {
-            items: 1,
-        },
-        575: {
-            items: 1,
-        },
-        991: {
-            items: 1,
-        }
-      }
-  });
+  // /*====================================
+  // Details  Owl Carousel
+  // ======================================*/
+  // var detailsslider = $("#owl-demo");
+  // detailsslider.owlCarousel({
+  //   autoplay: true,
+  //   nav: false,
+  //   autoplayHoverPause:true,
+  //   smartSpeed: 350,
+  //   dots: true,
+  //   margin:30,
+  //   loop: true,
+  //   navText: [
+  //     '<i class="lni-chevron-left"></i>',
+  //     '<i class="lni-chevron-right"></i>'
+  //   ],
+  //   responsiveClass: true,
+  //   responsive: {
+  //       0: {
+  //           items: 1,
+  //       },
+  //       575: {
+  //           items: 1,
+  //       },
+  //       991: {
+  //           items: 1,
+  //       }
+  //     }
+  // });
 
     
 })(jQuery);

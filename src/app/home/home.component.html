@@ -4,46 +4,15 @@
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-9 col-xs-12 text-center">
         <div class="contents">
-          <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
-          <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+          <h1 class="head-title">Welcome to The Largest <span class="year">Service List</span></h1>
           <div class="search-bar">
             <div class="search-inner">
               <form class="search-form">
                 <div class="form-group">
-                  <input type="text" name="customword" class="form-control" placeholder="What are you looking for?">
+                  <input type="text" [(ngModel)]="param" name="customword" class="form-control" placeholder="What are you looking for?">
                 </div>
-                <div class="form-group inputwithicon">
-                  <div class="select">
-                    <select>
-                      <option value="none">Locations</option>
-                      <option value="none">New York</option>
-                      <option value="none">California</option>
-                      <option value="none">Washington</option>
-                      <option value="none">Birmingham</option>
-                      <option value="none">Chicago</option>
-                      <option value="none">Phoenix</option>
-                    </select>
-                  </div>
-                  <i class="lni-target"></i>
-                </div>
-                <div class="form-group inputwithicon">
-                  <div class="select">
-                    <select>
-                      <option value="none">Select Catagory</option>
-                      <option value="none">Jobs</option>
-                      <option value="none">Electronics</option>
-                      <option value="none">Mobile</option>
-                      <option value="none">Training</option>
-                      <option value="none">Pets</option>
-                      <option value="none">Real Estate</option>
-                      <option value="none">Services</option>
-                      <option value="none">Training</option>
-                      <option value="none">Vehicles</option>
-                    </select>
-                  </div>
-                  <i class="lni-menu"></i>
-                </div>
-                <button class="btn btn-common" type="button"><i class="lni-search"></i> Search Now</button>
+                
+                <button (click)="search()" class="btn btn-common" type="button"><i class="lni-search"></i> Search Now</button>
               </form>
             </div>
           </div>
@@ -58,166 +27,77 @@
           <div class="row">
             <div class="col-12 text-center">
               <div class="heading">
-                <h1 class="section-title">Products Categories</h1>
-                <h4 class="sub-title">Find the best places</h4>
+                <h1 class="section-title">Service Categories</h1>
+                <!-- <h4 class="sub-title">Find the best places</h4> -->
               </div>
             </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg1">
+
+
+            <div *ngFor="let cat of category; let i = index" class="col-lg-2 col-md-3 col-xs-12">
+              <a (click)="goToCategory(cat)">
+                <div class="category-icon-item lis-bg{{i+1}}">
                   <div class="icon-box">
                     <div class="icon">
-                      <i class="lni-car"></i>
+                      <i class="lni-{{cat.name}}"></i>
                     </div>
-                    <h4>Vehicle</h4>
-                    <p class="categories-listing">11 Listing</p> 
+                    <h4>{{cat.name}}</h4>
+                    <p class="categories-listing">{{cat.ads.items.length}}  Listing</p> 
                   </div>
                 </div>
               </a>
             </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg2">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-display"></i>
-                    </div>
-                    <h4>Electronics</h4>
-                    <p class="categories-listing">12 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg3">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-mobile"></i>
-                    </div>
-                    <h4>Mobiles</h4>
-                    <p class="categories-listing">13 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg4">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-leaf"></i>
-                    </div>
-                    <h4>Furnitures</h4>
-                    <p class="categories-listing">14 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg5">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-briefcase"></i>
-                    </div>
-                    <h4>Jobs</h4>
-                    <p class="categories-listing">15 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg6">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-home"></i>
-                    </div>
-                    <h4>Real Estate</h4>
-                    <p class="categories-listing">16 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg7">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-graduation"></i>
-                    </div>
-                    <h4>Education</h4>
-                    <p class="categories-listing">17 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg8">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-laptop"></i>
-                    </div>
-                    <h4>Laptop</h4>
-                    <p class="categories-listing">18 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg9">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-car"></i>
-                    </div>
-                    <h4>Automobiles</h4>
-                    <p class="categories-listing">18 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg10">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-camera"></i>
-                    </div>
-                    <h4>Cameras</h4>
-                    <p class="categories-listing">18 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg11">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-heart"></i>
-                    </div>
-                    <h4>Matrimony</h4>
-                    <p class="categories-listing">18 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-              <a href="category.html">
-                <div class="category-icon-item lis-bg12">
-                  <div class="icon-box">
-                    <div class="icon">
-                      <i class="lni-leaf"></i>
-                    </div>
-                    <h4>Services</h4>
-                    <p class="categories-listing">18 Listing</p> 
-                  </div>
-                </div>
-              </a>
-            </div>
+    
+
           </div>
         </div>
       </section>
+
+      <!-- Featured Section Start -->
+    <section class="featured section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="heading">
+              <h1 class="section-title">Featured Services</h1>
+              <!-- <h4 class="sub-title">Discover & connect with top-rated local businesses</h4> -->
+            </div>
+          </div>
+          <div *ngFor="let item of ads" class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+            <div class="featured-box">
+              <!-- <figure>
+                <div class="homes-tag featured">Cameras</div>
+                <div class="homes-tag rent"><i class="lni-heart"></i> 202</div>
+                <span class="price-save">
+                  $200
+                </span>
+                <a href="#"><img class="img-fluid" src="assets/img/featured/img-1.jpg" alt=""></a>
+              </figure> -->
+              <div  class="content-wrapper">
+                <div class="feature-content">
+                  <h4><a >{{item.title}}</a></h4>
+                  <p class="listing-tagline">{{item.description}}</p>
+                  <div class="meta-tag">
+                    <!-- <div class="listing-review">
+                      <span class="review-avg">4.5</span>
+                      2 Ratings       
+                    </div> -->
+                    <div class="user-name">
+                      <a ><i class="lni-user"></i>{{item.user.items[0].name}}</a>
+                    </div>
+                    <div class="listing-category">
+                      <a ><i class="lni-display"></i>{{item.category.items[0].name}} </a>         
+                    </div>
+                  </div>
+                </div>
+                <div class="listing-bottom clearfix">
+                  <a class="float-left"><i class="lni-map-marker"></i> {{item.city}}, {{item.state}}</a>
+                  <a [routerLink]="['/ads', item.id]" class="float-right" >View Details</a> 
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </section>
+    <!-- Featured Section End -->

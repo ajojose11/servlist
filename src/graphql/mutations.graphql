@@ -8,6 +8,7 @@ mutation CreateUser(
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -18,7 +19,10 @@ mutation CreateUser(
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -37,6 +41,7 @@ mutation UpdateUser(
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -47,7 +52,10 @@ mutation UpdateUser(
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -66,6 +74,7 @@ mutation DeleteUser(
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -76,7 +85,10 @@ mutation DeleteUser(
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -103,7 +115,10 @@ mutation CreateCategory(
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -130,7 +145,10 @@ mutation UpdateCategory(
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -157,7 +175,10 @@ mutation DeleteCategory(
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -177,10 +198,36 @@ mutation CreateAdvertisements(
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }
@@ -194,10 +241,36 @@ mutation UpdateAdvertisements(
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }
@@ -211,10 +284,36 @@ mutation DeleteAdvertisements(
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }

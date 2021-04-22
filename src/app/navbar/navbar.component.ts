@@ -2,9 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
-import Amplify from 'aws-amplify';
-import awsconfig from '../../aws-exports';
-import awsconfig1 from '../../aws-exports-api';
+
 
 
 @Component({
@@ -24,15 +22,6 @@ export class NavbarComponent implements OnInit {
       (event: NavigationEvent) => {
         this.currentRoute = event;
         this.currentRoute = this.currentRoute.urlAfterRedirects;
-        console.log(event);
-        if(this.user.currentUserValue) {
-          console.log("currentuservalue")
-          Amplify.configure(awsconfig)    
-        } else {
-          console.log("awsconfig1")
-          Amplify.configure(awsconfig1)  
-        }
-        // this.ref.detectChanges();
     })
     
   }
@@ -40,14 +29,16 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.user.currentUserData.subscribe(value => {
       if (value) {
-        console.log('in navbar')
         this.signedIn = true;
       } else this.signedIn = false;
+      this.ref.detectChanges()
     })
+    
   }
 
   public signOut() {
     this.user.signOut();
+   
   }
 
 }

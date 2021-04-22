@@ -5,6 +5,7 @@ subscription OnCreateUser {
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -15,7 +16,10 @@ subscription OnCreateUser {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -31,6 +35,7 @@ subscription OnUpdateUser {
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -41,7 +46,10 @@ subscription OnUpdateUser {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -57,6 +65,7 @@ subscription OnDeleteUser {
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -67,7 +76,10 @@ subscription OnDeleteUser {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -91,7 +103,10 @@ subscription OnCreateCategory {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -115,7 +130,10 @@ subscription OnUpdateCategory {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -139,7 +157,10 @@ subscription OnDeleteCategory {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -156,10 +177,36 @@ subscription OnCreateAdvertisements {
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }
@@ -170,10 +217,36 @@ subscription OnUpdateAdvertisements {
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }
@@ -184,10 +257,36 @@ subscription OnDeleteAdvertisements {
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }

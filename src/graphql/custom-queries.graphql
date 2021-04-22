@@ -1,0 +1,44 @@
+query ListCategoryID{
+      listCategorys {
+        items {
+          id
+          name
+          ads{
+            items{
+            title
+            }
+          }
+        }
+      }
+    }
+query ListAdsHome( $filter: ModelAdvertisementsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAdvertisementss (filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      categoryID
+      userID
+      country
+      state
+      city
+      phone
+      createdTime
+      createdAt
+      updatedAt
+      user {
+        items {
+          name
+        }
+      }
+      category {
+        items {
+          name
+        }
+      }
+    }
+  }
+}

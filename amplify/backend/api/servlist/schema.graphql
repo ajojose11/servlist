@@ -11,6 +11,7 @@ type User
   name: String
   email: String
   address: String
+  phone: String
   ads: [Advertisements] @connection(keyName: "byUser", fields: ["id"])
 }
 type Category 
@@ -41,7 +42,12 @@ type Advertisements
     title: String
     description: String
     categoryID: ID
+    category: [Category] @connection(fields: ["categoryID"])
     userID: ID
-    place: String
+    user: [User] @connection(fields: ["userID"])
+    country: String
+    state: String
+    city: String
+    phone: String
     createdTime: AWSDateTime!
   }

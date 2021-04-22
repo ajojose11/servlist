@@ -5,6 +5,7 @@ query GetUser($id: ID!) {
     name
     email
     address
+    phone
     createdAt
     updatedAt
     owner
@@ -15,7 +16,10 @@ query GetUser($id: ID!) {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -36,6 +40,7 @@ query ListUsers(
       name
       email
       address
+      phone
       createdAt
       updatedAt
       owner
@@ -60,7 +65,10 @@ query GetCategory($id: ID!) {
         description
         categoryID
         userID
-        place
+        country
+        state
+        city
+        phone
         createdTime
         createdAt
         updatedAt
@@ -96,10 +104,36 @@ query GetAdvertisements($id: ID!) {
     description
     categoryID
     userID
-    place
+    country
+    state
+    city
+    phone
     createdTime
     createdAt
     updatedAt
+    user {
+      items {
+        id
+        name
+        email
+        address
+        phone
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    category {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
     owner
   }
 }
@@ -115,10 +149,19 @@ query ListAdvertisementss(
       description
       categoryID
       userID
-      place
+      country
+      state
+      city
+      phone
       createdTime
       createdAt
       updatedAt
+      user {
+        nextToken
+      }
+      category {
+        nextToken
+      }
       owner
     }
     nextToken

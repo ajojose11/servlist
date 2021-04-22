@@ -1,35 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import {APIService} from '../services/API.service';
-import { UserService} from '../services/user.service'
-import Amplify from 'aws-amplify';
-import awsconfig from '../../aws-exports';
-import awsconfig1 from '../../aws-exports-api';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DataService } from '../services/data.service';
+import { UserService } from '../services/user.service'
+import { APIService} from '../services/API.service';
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  userDetails = {username:''};
-
-  constructor(private api: APIService, private user: UserService) { 
+export class HomeComponent implements OnInit, OnDestroy {
+  userDetails: any;
+  category: any;
+  users: any;
+  subscrip: any
+  ads: any;
+  param: any;
+  constructor(private data: DataService, private user: UserService, private api: APIService, private router: Router) { 
+   
   
   }
 
-  ngOnInit(): void {
-    if(this.user.currentUserValue) {
-      this.userDetails = this.user.currentUserValue;
-      // Amplify.configure(awsconfig)    
-    } else {
-      // Amplify.configure(awsconfig1)  
-    }
-    this.api.ListCategorys().then(res =>
-      {
-        console.log(res);
-      }, error => {
-        console.log(error)
-      })
-  }
+  ngOnInit() {
+   this.userDetails = this.user.currentUserValue;
+   this.api.ListCategoryID().then(res => {
+    this.category = res.items;
+  })
+  this.api.ListUsers().then(res => {
+    this.users = res.items;
+  })
+  this.api.ListAdsHome().then(res => {
+    this.ads = res.items;
 
+  })
+
+}
+search() {
+  this.router.navigate(['/search', this.param])
+}
+goToCategory(item: any) {
+  if(item.ads.items.length > 0) {
+    this.router.navigate(['/category', item.id])
+  }
+}
+ngOnDestroy() {
+}
 }

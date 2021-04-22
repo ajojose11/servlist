@@ -1,0 +1,31 @@
+
+ 
+  .required label {
+    font-weight: bold;
+}
+.required label:after {
+    color: #e32;
+    content: ' *';
+    display:inline;
+}
+  .error-message {
+    color: #cc0033;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 5px 0 0;
+  }
+  
+ .error-message {
+    display: none;
+  }
+  
+  
+  /* Error Styling */
+  
+
+.error-message {
+    display: inline-block;
+  }
+  
+  

@@ -9,23 +9,83 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
-export type CreateUserInput = {
-  id?: string | null;
+export type ModelCategoryConnection = {
+  __typename: "ModelCategoryConnection";
+  items?: Array<Category | null> | null;
+  nextToken?: string | null;
+};
+
+export type Category = {
+  __typename: "Category";
+  id?: string;
+  name?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+  ads?: ModelAdvertisementsConnection;
+};
+
+export type ModelAdvertisementsConnection = {
+  __typename: "ModelAdvertisementsConnection";
+  items?: Array<Advertisements | null> | null;
+  nextToken?: string | null;
+};
+
+export type Advertisements = {
+  __typename: "Advertisements";
+  id?: string;
+  title?: string | null;
+  description?: string | null;
+  categoryID?: string | null;
+  userID?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
+  createdTime?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  user?: ModelUserConnection;
+  category?: ModelCategoryConnection;
+  owner?: string | null;
+};
+
+export type ModelUserConnection = {
+  __typename: "ModelUserConnection";
+  items?: Array<User | null> | null;
+  nextToken?: string | null;
+};
+
+export type User = {
+  __typename: "User";
+  id?: string;
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+  ads?: ModelAdvertisementsConnection;
 };
 
-export type ModelUserConditionInput = {
-  name?: ModelStringInput | null;
-  email?: ModelStringInput | null;
-  address?: ModelStringInput | null;
-  and?: Array<ModelUserConditionInput | null> | null;
-  or?: Array<ModelUserConditionInput | null> | null;
-  not?: ModelUserConditionInput | null;
+export type ModelAdvertisementsFilterInput = {
+  id?: ModelIDInput | null;
+  title?: ModelStringInput | null;
+  description?: ModelStringInput | null;
+  categoryID?: ModelIDInput | null;
+  userID?: ModelIDInput | null;
+  country?: ModelStringInput | null;
+  state?: ModelStringInput | null;
+  city?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
+  createdTime?: ModelStringInput | null;
+  and?: Array<ModelAdvertisementsFilterInput | null> | null;
+  or?: Array<ModelAdvertisementsFilterInput | null> | null;
+  not?: ModelAdvertisementsFilterInput | null;
 };
 
-export type ModelStringInput = {
+export type ModelIDInput = {
   ne?: string | null;
   eq?: string | null;
   le?: string | null;
@@ -64,36 +124,38 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type User = {
-  __typename: "User";
-  id?: string;
+export type ModelStringInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
+export type CreateUserInput = {
+  id?: string | null;
   name?: string | null;
   email?: string | null;
   address?: string | null;
-  createdAt?: string;
-  updatedAt?: string;
-  owner?: string | null;
-  ads?: ModelAdvertisementsConnection;
+  phone?: string | null;
 };
 
-export type ModelAdvertisementsConnection = {
-  __typename: "ModelAdvertisementsConnection";
-  items?: Array<Advertisements | null> | null;
-  nextToken?: string | null;
-};
-
-export type Advertisements = {
-  __typename: "Advertisements";
-  id?: string;
-  title?: string | null;
-  description?: string | null;
-  categoryID?: string | null;
-  userID?: string | null;
-  place?: string | null;
-  createdTime?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  owner?: string | null;
+export type ModelUserConditionInput = {
+  name?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  address?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
+  and?: Array<ModelUserConditionInput | null> | null;
+  or?: Array<ModelUserConditionInput | null> | null;
+  not?: ModelUserConditionInput | null;
 };
 
 export type UpdateUserInput = {
@@ -101,6 +163,7 @@ export type UpdateUserInput = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
 };
 
 export type DeleteUserInput = {
@@ -119,16 +182,6 @@ export type ModelCategoryConditionInput = {
   not?: ModelCategoryConditionInput | null;
 };
 
-export type Category = {
-  __typename: "Category";
-  id?: string;
-  name?: string | null;
-  createdAt?: string;
-  updatedAt?: string;
-  owner?: string | null;
-  ads?: ModelAdvertisementsConnection;
-};
-
 export type UpdateCategoryInput = {
   id: string;
   name?: string | null;
@@ -144,8 +197,11 @@ export type CreateAdvertisementsInput = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
-  createdTime: string;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
+  createdTime: string | Date;
 };
 
 export type ModelAdvertisementsConditionInput = {
@@ -153,27 +209,14 @@ export type ModelAdvertisementsConditionInput = {
   description?: ModelStringInput | null;
   categoryID?: ModelIDInput | null;
   userID?: ModelIDInput | null;
-  place?: ModelStringInput | null;
+  country?: ModelStringInput | null;
+  state?: ModelStringInput | null;
+  city?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
   createdTime?: ModelStringInput | null;
   and?: Array<ModelAdvertisementsConditionInput | null> | null;
   or?: Array<ModelAdvertisementsConditionInput | null> | null;
   not?: ModelAdvertisementsConditionInput | null;
-};
-
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
 };
 
 export type UpdateAdvertisementsInput = {
@@ -182,7 +225,10 @@ export type UpdateAdvertisementsInput = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime?: string | null;
 };
 
@@ -195,15 +241,10 @@ export type ModelUserFilterInput = {
   name?: ModelStringInput | null;
   email?: ModelStringInput | null;
   address?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
-};
-
-export type ModelUserConnection = {
-  __typename: "ModelUserConnection";
-  items?: Array<User | null> | null;
-  nextToken?: string | null;
 };
 
 export type ModelCategoryFilterInput = {
@@ -214,23 +255,53 @@ export type ModelCategoryFilterInput = {
   not?: ModelCategoryFilterInput | null;
 };
 
-export type ModelCategoryConnection = {
+export type ListCategoryIDQuery = {
   __typename: "ModelCategoryConnection";
-  items?: Array<Category | null> | null;
-  nextToken?: string | null;
+  items?: Array<{
+    __typename: "Category";
+    id: string;
+    name?: string | null;
+    ads?: {
+      __typename: "ModelAdvertisementsConnection";
+      items?: Array<{
+        __typename: "Advertisements";
+        title?: string | null;
+      } | null> | null;
+    } | null;
+  } | null> | null;
 };
 
-export type ModelAdvertisementsFilterInput = {
-  id?: ModelIDInput | null;
-  title?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  categoryID?: ModelIDInput | null;
-  userID?: ModelIDInput | null;
-  place?: ModelStringInput | null;
-  createdTime?: ModelStringInput | null;
-  and?: Array<ModelAdvertisementsFilterInput | null> | null;
-  or?: Array<ModelAdvertisementsFilterInput | null> | null;
-  not?: ModelAdvertisementsFilterInput | null;
+export type ListAdsHomeQuery = {
+  __typename: "ModelAdvertisementsConnection";
+  items?: Array<{
+    __typename: "Advertisements";
+    id: string;
+    title?: string | null;
+    description?: string | null;
+    categoryID?: string | null;
+    userID?: string | null;
+    country?: string | null;
+    state?: string | null;
+    city?: string | null;
+    phone?: string | null;
+    createdTime: string;
+    createdAt: string;
+    updatedAt: string;
+    user?: {
+      __typename: "ModelUserConnection";
+      items?: Array<{
+        __typename: "User";
+        name?: string | null;
+      } | null> | null;
+    } | null;
+    category?: {
+      __typename: "ModelCategoryConnection";
+      items?: Array<{
+        __typename: "Category";
+        name?: string | null;
+      } | null> | null;
+    } | null;
+  } | null> | null;
 };
 
 export type CreateUserMutation = {
@@ -239,6 +310,7 @@ export type CreateUserMutation = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -251,7 +323,10 @@ export type CreateUserMutation = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -267,6 +342,7 @@ export type UpdateUserMutation = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -279,7 +355,10 @@ export type UpdateUserMutation = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -295,6 +374,7 @@ export type DeleteUserMutation = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -307,7 +387,10 @@ export type DeleteUserMutation = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -333,7 +416,10 @@ export type CreateCategoryMutation = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -359,7 +445,10 @@ export type UpdateCategoryMutation = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -385,7 +474,10 @@ export type DeleteCategoryMutation = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -402,10 +494,40 @@ export type CreateAdvertisementsMutation = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -416,10 +538,40 @@ export type UpdateAdvertisementsMutation = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -430,10 +582,40 @@ export type DeleteAdvertisementsMutation = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -443,6 +625,7 @@ export type GetUserQuery = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -455,7 +638,10 @@ export type GetUserQuery = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -473,6 +659,7 @@ export type ListUsersQuery = {
     name?: string | null;
     email?: string | null;
     address?: string | null;
+    phone?: string | null;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
@@ -500,7 +687,10 @@ export type GetCategoryQuery = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -534,10 +724,40 @@ export type GetAdvertisementsQuery = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -550,10 +770,21 @@ export type ListAdvertisementssQuery = {
     description?: string | null;
     categoryID?: string | null;
     userID?: string | null;
-    place?: string | null;
+    country?: string | null;
+    state?: string | null;
+    city?: string | null;
+    phone?: string | null;
     createdTime: string;
     createdAt: string;
     updatedAt: string;
+    user?: {
+      __typename: "ModelUserConnection";
+      nextToken?: string | null;
+    } | null;
+    category?: {
+      __typename: "ModelCategoryConnection";
+      nextToken?: string | null;
+    } | null;
     owner?: string | null;
   } | null> | null;
   nextToken?: string | null;
@@ -565,6 +796,7 @@ export type OnCreateUserSubscription = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -577,7 +809,10 @@ export type OnCreateUserSubscription = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -593,6 +828,7 @@ export type OnUpdateUserSubscription = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -605,7 +841,10 @@ export type OnUpdateUserSubscription = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -621,6 +860,7 @@ export type OnDeleteUserSubscription = {
   name?: string | null;
   email?: string | null;
   address?: string | null;
+  phone?: string | null;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -633,7 +873,10 @@ export type OnDeleteUserSubscription = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -659,7 +902,10 @@ export type OnCreateCategorySubscription = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -685,7 +931,10 @@ export type OnUpdateCategorySubscription = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -711,7 +960,10 @@ export type OnDeleteCategorySubscription = {
       description?: string | null;
       categoryID?: string | null;
       userID?: string | null;
-      place?: string | null;
+      country?: string | null;
+      state?: string | null;
+      city?: string | null;
+      phone?: string | null;
       createdTime: string;
       createdAt: string;
       updatedAt: string;
@@ -728,10 +980,40 @@ export type OnCreateAdvertisementsSubscription = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -742,10 +1024,40 @@ export type OnUpdateAdvertisementsSubscription = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -756,10 +1068,40 @@ export type OnDeleteAdvertisementsSubscription = {
   description?: string | null;
   categoryID?: string | null;
   userID?: string | null;
-  place?: string | null;
+  country?: string | null;
+  state?: string | null;
+  city?: string | null;
+  phone?: string | null;
   createdTime: string;
   createdAt: string;
   updatedAt: string;
+  user?: {
+    __typename: "ModelUserConnection";
+    items?: Array<{
+      __typename: "User";
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      address?: string | null;
+      phone?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  category?: {
+    __typename: "ModelCategoryConnection";
+    items?: Array<{
+      __typename: "Category";
+      id: string;
+      name?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
   owner?: string | null;
 };
 
@@ -767,6 +1109,81 @@ export type OnDeleteAdvertisementsSubscription = {
   providedIn: "root"
 })
 export class APIService {
+  async ListCategoryID(): Promise<ListCategoryIDQuery> {
+    const statement = `query ListCategoryID {
+        listCategorys {
+          __typename
+          items {
+            __typename
+            id
+            name
+            ads {
+              __typename
+              items {
+                __typename
+                title
+              }
+            }
+          }
+        }
+      }`;
+    const response = (await API.graphql(graphqlOperation(statement))) as any;
+    return <ListCategoryIDQuery>response.data.listCategorys;
+  }
+  async ListAdsHome(
+    filter?: ModelAdvertisementsFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListAdsHomeQuery> {
+    const statement = `query ListAdsHome($filter: ModelAdvertisementsFilterInput, $limit: Int, $nextToken: String) {
+        listAdvertisementss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            title
+            description
+            categoryID
+            userID
+            country
+            state
+            city
+            phone
+            createdTime
+            createdAt
+            updatedAt
+            user {
+              __typename
+              items {
+                __typename
+                name
+              }
+            }
+            category {
+              __typename
+              items {
+                __typename
+                name
+              }
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListAdsHomeQuery>response.data.listAdvertisementss;
+  }
   async CreateUser(
     input: CreateUserInput,
     condition?: ModelUserConditionInput
@@ -778,6 +1195,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -790,7 +1208,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -822,6 +1243,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -834,7 +1256,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -866,6 +1291,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -878,7 +1304,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -920,7 +1349,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -962,7 +1394,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1004,7 +1439,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1037,10 +1475,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`;
@@ -1067,10 +1535,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`;
@@ -1097,10 +1595,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`;
@@ -1123,6 +1651,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -1135,7 +1664,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1167,6 +1699,7 @@ export class APIService {
             name
             email
             address
+            phone
             createdAt
             updatedAt
             owner
@@ -1211,7 +1744,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1276,10 +1812,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`;
@@ -1306,10 +1872,21 @@ export class APIService {
             description
             categoryID
             userID
-            place
+            country
+            state
+            city
+            phone
             createdTime
             createdAt
             updatedAt
+            user {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              nextToken
+            }
             owner
           }
           nextToken
@@ -1341,6 +1918,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -1353,7 +1931,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1377,6 +1958,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -1389,7 +1971,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1413,6 +1998,7 @@ export class APIService {
           name
           email
           address
+          phone
           createdAt
           updatedAt
           owner
@@ -1425,7 +2011,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1459,7 +2048,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1493,7 +2085,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1527,7 +2122,10 @@ export class APIService {
               description
               categoryID
               userID
-              place
+              country
+              state
+              city
+              phone
               createdTime
               createdAt
               updatedAt
@@ -1552,10 +2150,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`
@@ -1574,10 +2202,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`
@@ -1596,10 +2254,40 @@ export class APIService {
           description
           categoryID
           userID
-          place
+          country
+          state
+          city
+          phone
           createdTime
           createdAt
           updatedAt
+          user {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              address
+              phone
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          category {
+            __typename
+            items {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           owner
         }
       }`
